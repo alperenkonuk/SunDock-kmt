@@ -13,7 +13,7 @@ function App() {
       </Routes>
       <footer className="footer">
         <p>
-          © 2026 SunDock Şarjlı Bank Sistemi —{" "}
+          © 2026 SunDock Akıllı Bank Sistemi —{" "}
           <a
             href="https://www.iuc.edu.tr"
             target="_blank"

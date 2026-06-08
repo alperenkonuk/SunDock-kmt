@@ -60,11 +60,12 @@ const HomePage = () => {
       {/* Hero */}
       <section className="hero">
         <h1>
-          Kampüs <span>Şarjlı Bank</span> Sistemi
+          Sürdürülebilir Kampüsler için <br />
+          <span>Güneş Enerjili Akıllı Bank Sistemi</span>
         </h1>
         <p>
-          İstanbul Üniversitesi-Cerrahpaşa Avcılar Kampüsü'ndeki şarj
-          banklarının anlık durumunu ve konumlarını görüntüleyin.
+          İstanbul Üniversitesi-Cerrahpaşa Avcılar Kampüsü'ndeki akıllı
+          bankların anlık durumunu ve konumlarını görüntüleyin.
         </p>
       </section>
 

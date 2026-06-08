@@ -59,10 +59,6 @@ const HomePage = () => {
     <main>
       {/* Hero */}
       <section className="hero">
-        <div className="hero-badge">
-          <span className="hero-badge-dot" />
-          Sistem Aktif • Gerçek Zamanlı
-        </div>
         <h1>
           Kampüs <span>Şarjlı Bank</span> Sistemi
         </h1>

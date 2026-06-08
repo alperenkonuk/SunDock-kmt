@@ -316,7 +316,9 @@ img {
   backdrop-filter: blur(10px);
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-lg);
-  min-width: 160px;
+  flex: 1;
+  min-width: 180px;
+  max-width: 240px;
   transition: all var(--transition-base);
 }
 

@@ -16,40 +16,29 @@ const createIcon = (color) => {
     className: 'custom-marker',
     html: `
       <div style="
-        width: 32px;
-        height: 32px;
+        width: 26px;
+        height: 26px;
         border-radius: 50% 50% 50% 0;
         background: ${fillColor};
         transform: rotate(-45deg);
-        box-shadow: 0 0 10px ${fillColor}80, 0 2px 8px rgba(0,0,0,0.4);
-        border: 2px solid rgba(255,255,255,0.9);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        border: 2px solid #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
+        will-change: transform;
       ">
         <div style="
           transform: rotate(45deg);
-          font-size: 11px;
-          font-weight: 700;
+          font-size: 10px;
+          font-weight: 800;
           color: white;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         ">⚡</div>
       </div>
-      <div style="
-        width: 10px;
-        height: 10px;
-        background: ${fillColor};
-        border-radius: 50%;
-        margin: -4px auto 0;
-        opacity: 0.4;
-        filter: blur(2px);
-        animation: pulse-marker 2s ease-in-out infinite;
-      "></div>
     `,
-    iconSize: [32, 42],
-    iconAnchor: [16, 42],
-    popupAnchor: [0, -42],
+    iconSize: [26, 26],
+    iconAnchor: [13, 26],
+    popupAnchor: [0, -26],
   });
 };
 

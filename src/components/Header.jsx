@@ -1,13 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { Zap, MapPin, List } from "lucide-react";
-import benches from "../data/benches.json";
-
-const Header = () => {
+const Header = ({ benches = [] }) => {
   const location = useLocation();
   const activeBenches = benches.filter((b) => b.status === "active").length;
-  const avgBattery = Math.round(
-    benches.reduce((sum, b) => sum + b.batteryLevel, 0) / benches.length,
-  );
+  const avgBattery = benches.length
+    ? Math.round(
+        benches.reduce((sum, b) => sum + b.batteryLevel, 0) / benches.length,
+      )
+    : 0;
 
   return (
     <header className="header">

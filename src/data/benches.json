@@ -4,7 +4,7 @@
     "name": "Bank #1 - Ek Bina Önü",
     "lat": 40.98874073699483,
     "lng": 28.725680460406856,
-    "batteryLevel": 71,
+    "batteryLevel": 52,
     "status": "active"
   },
   {
@@ -12,7 +12,7 @@
     "name": "Bank #2 - Güney Bahçe",
     "lat": 40.98689697593004,
     "lng": 28.729581942250835,
-    "batteryLevel": 71,
+    "batteryLevel": 48,
     "status": "active"
   },
   {
@@ -20,7 +20,7 @@
     "name": "Bank #3 - İşletme Fakültesi Önü",
     "lat": 40.98728976484753,
     "lng": 28.72819255805031,
-    "batteryLevel": 55,
+    "batteryLevel": 39,
     "status": "active"
   },
   {
@@ -28,7 +28,7 @@
     "name": "Bank #4 - İşletme Fakültesi Önü",
     "lat": 40.98689697593004,
     "lng": 28.729581942250835,
-    "batteryLevel": 71,
+    "batteryLevel": 52,
     "status": "active"
   },
   {
@@ -36,7 +36,7 @@
     "name": "Bank #5 - İşletme Fakültesi Önü",
     "lat": 40.98670867938234,
     "lng": 28.728897978995043,
-    "batteryLevel": 71,
+    "batteryLevel": 54,
     "status": "active"
   },
   {
@@ -44,7 +44,7 @@
     "name": "Bank #6 - Mühendislik A blok Önü",
     "lat": 40.990230980954806,
     "lng": 28.72468973436287,
-    "batteryLevel": 71,
+    "batteryLevel": 56,
     "status": "active"
   },
   {
@@ -52,7 +52,7 @@
     "name": "Bank #7 - Mühendislik A blok Önü",
     "lat": 40.98999207904357,
     "lng": 28.72495527304265,
-    "batteryLevel": 71,
+    "batteryLevel": 54,
     "status": "active"
   },
   {
@@ -60,7 +60,7 @@
     "name": "Bank #8 - Otopark Girişi",
     "lat": 40.988322343117,
     "lng": 28.726508130895027,
-    "batteryLevel": 0,
+    "batteryLevel": 84,
     "status": "offline"
   },
   {
@@ -68,7 +68,7 @@
     "name": "Bank #9 - Ptt Kargomat Yanı 1",
     "lat": 40.989267139881655,
     "lng": 28.72671311082616,
-    "batteryLevel": 71,
+    "batteryLevel": 52,
     "status": "active"
   },
   {
@@ -76,7 +76,7 @@
     "name": "Bank #10 - Ptt Kargomat Yanı 2",
     "lat": 40.989046456107154,
     "lng": 28.727051069145208,
-    "batteryLevel": 71,
+    "batteryLevel": 51,
     "status": "active"
   },
   {
@@ -84,7 +84,7 @@
     "name": "Bank #11 - Spor Bilimleri Fakültesi Önü",
     "lat": 40.985070311665524,
     "lng": 28.726889216781355,
-    "batteryLevel": 92,
+    "batteryLevel": 75,
     "status": "active"
   },
   {
@@ -92,7 +92,7 @@
     "name": "Bank #12 - Spor Bilimleri Fakültesi Önü",
     "lat": 40.98487480022744,
     "lng": 28.72671116986188,
-    "batteryLevel": 71,
+    "batteryLevel": 53,
     "status": "active"
   },
   {
@@ -100,7 +100,7 @@
     "name": "Bank #13 - Spor Bilimleri Fakültesi Önü",
     "lat": 40.98874073699483,
     "lng": 28.725680460406856,
-    "batteryLevel": 71,
+    "batteryLevel": 56,
     "status": "active"
   },
   {
@@ -108,7 +108,7 @@
     "name": "Bank #14 - Spor Bilimleri Fakültesi Önü",
     "lat": 40.98874073699483,
     "lng": 28.725680460406856,
-    "batteryLevel": 71,
+    "batteryLevel": 56,
     "status": "active"
   },
   {
@@ -116,15 +116,15 @@
     "name": "Bank #15 - test Bilimleri Fakültesi Önü",
     "lat": 40.98874073699483,
     "lng": 28.725680460406856,
-    "batteryLevel": 71,
+    "batteryLevel": 47,
     "status": "active"
   },
   {
     "id": 16,
     "name": "Bank #16 - Üniversite Yolu",
     "lat": 40.98582388082237,
-    "lng": 28.725881835134545,
-    "batteryLevel": 67,
+    "lng": 28.725881835134544,
+    "batteryLevel": 47,
     "status": "active"
   },
   {
@@ -132,7 +132,7 @@
     "name": "Bank #17 - Üniversite Yolu",
     "lat": 40.986334109326734,
     "lng": 28.72639681923975,
-    "batteryLevel": 34,
+    "batteryLevel": 20,
     "status": "active"
   },
   {
@@ -140,7 +140,7 @@
     "name": "Bank #18 - Üniversite Yolu",
     "lat": 40.987010358538186,
     "lng": 28.726990928471476,
-    "batteryLevel": 43,
+    "batteryLevel": 23,
     "status": "active"
   },
   {
@@ -148,7 +148,7 @@
     "name": "Bank #19 - Üniversite Yolu",
     "lat": 40.98603040239258,
     "lng": 28.725982417972983,
-    "batteryLevel": 71,
+    "batteryLevel": 50,
     "status": "active"
   },
   {
@@ -156,7 +156,7 @@
     "name": "Bank #20 - Üniversite Yolu",
     "lat": 40.98603040239258,
     "lng": 28.725982417972983,
-    "batteryLevel": 71,
+    "batteryLevel": 50,
     "status": "active"
   },
   {
@@ -164,7 +164,7 @@
     "name": "Bank #21 - Üniversite Yolu",
     "lat": 40.98681057448785,
     "lng": 28.726908985422988,
-    "batteryLevel": 71,
+    "batteryLevel": 54,
     "status": "active"
   },
   {
@@ -172,7 +172,7 @@
     "name": "Bank #22 - Yürüyüş Yolu",
     "lat": 40.988353725123844,
     "lng": 28.728063812184384,
-    "batteryLevel": 15,
+    "batteryLevel": 98,
     "status": "maintenance"
   },
   {
@@ -180,7 +180,7 @@
     "name": "Bank #23 - Yürüyüş Yolu",
     "lat": 40.98788805479316,
     "lng": 28.728783985286245,
-    "batteryLevel": 78,
+    "batteryLevel": 58,
     "status": "active"
   },
   {
@@ -188,7 +188,7 @@
     "name": "Bank #24 - Yürüyüş Yolu",
     "lat": 40.98747198571559,
     "lng": 28.72931908586863,
-    "batteryLevel": 88,
+    "batteryLevel": 71,
     "status": "active"
   }
 ]

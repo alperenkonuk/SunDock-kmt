@@ -7,33 +7,91 @@ import {
   Zap,
   Info,
 } from 'lucide-react';
-import benches from '../data/benches.json';
 import StatusBadge from '../components/StatusBadge.jsx';
 import CampusMap from '../components/CampusMap.jsx';
 import { getBatteryTextColor } from '../components/BatteryIndicator.jsx';
 
-const BenchPage = () => {
+const BenchPage = ({ onRefresh }) => {
   const { id } = useParams();
-  const bench = benches.find((b) => b.id === parseInt(id));
+  const [bench, setBench] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [circleOffset, setCircleOffset] = useState(440);
+
+  const fetchBenchDetails = async () => {
+    try {
+      const res = await fetch(`/api/benches/${id}`);
+      if (!res.ok) throw new Error("Cihaz bulunamadı");
+      const data = await res.json();
+      setBench(data);
+      setError(false);
+    } catch (err) {
+      console.error('Detaylar alınamadı:', err);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchBenchDetails();
+
+    // Auto-poll this bench's details every 5 seconds
+    const interval = setInterval(fetchBenchDetails, 5000);
+    return () => clearInterval(interval);
+  }, [id]);
 
   useEffect(() => {
     if (bench) {
-      // Animate circle on mount
+      // Animate circle on mount / update
       const timer = setTimeout(() => {
         const circumference = 2 * Math.PI * 70;
         const offset = circumference - (bench.batteryLevel / 100) * circumference;
         setCircleOffset(offset);
-      }, 200);
+      }, 100);
       return () => clearTimeout(timer);
     }
   }, [bench]);
 
-  if (!bench) {
+  const handleUpdateTelemetry = async (batteryLevel, status) => {
+    try {
+      const res = await fetch('/api/telemetry/report', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-API-KEY': 'sundock-secret-key'
+        },
+        body: JSON.stringify({ id: parseInt(id), batteryLevel, status })
+      });
+      if (res.ok) {
+        const updated = await res.json();
+        setBench(updated);
+        if (onRefresh) onRefresh();
+      }
+    } catch (err) {
+      console.error('Telemetri güncelleme hatası:', err);
+    }
+  };
+
+  if (loading) {
+    return (
+      <main className="loading-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh', flexDirection: 'column', gap: '16px' }}>
+        <div className="spinner" style={{ width: '50px', height: '50px', border: '5px solid var(--border-glass)', borderTopColor: 'var(--blue-400)', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+        <p style={{ color: 'var(--text-secondary)' }}>Yükleniyor...</p>
+        <style>{`
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
+      </main>
+    );
+  }
+
+  if (error || !bench) {
     return (
       <div className="not-found">
         <h2>Bank Bulunamadı 😔</h2>
-        <p>Aradığınız bank mevcut değil veya kaldırılmış olabilir.</p>
+        <p>Aradığınız bank mevcut değil veya bir hata oluştu.</p>
         <Link to="/">Ana Sayfaya Dön</Link>
       </div>
     );
@@ -114,6 +172,69 @@ const BenchPage = () => {
               <span className="detail-feature-value" style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                 {bench.lat.toFixed(4)}, {bench.lng.toFixed(4)}
               </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Telemetry Simulator Quick Control */}
+        <div className="detail-card">
+          <div className="detail-card-title">
+            <Zap size={16} style={{ color: 'var(--blue-400)' }} />
+            Simülatör Kontrolleri
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '8px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                <span style={{ color: 'var(--text-secondary)' }}>Şarj Seviyesi</span>
+                <strong style={{ color: batteryColor }}>%{bench.batteryLevel}</strong>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={bench.batteryLevel}
+                onChange={(e) => handleUpdateTelemetry(parseInt(e.target.value), bench.status)}
+                style={{
+                  width: '100%',
+                  height: '6px',
+                  borderRadius: 'var(--radius-full)',
+                  cursor: 'pointer',
+                  accentColor: batteryColor
+                }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Durum Değiştir</span>
+              <div style={{ display: 'flex', gap: '6px' }}>
+                {['active', 'maintenance', 'offline'].map((st) => (
+                  <button
+                    key={st}
+                    onClick={() => handleUpdateTelemetry(bench.batteryLevel, st)}
+                    style={{
+                      flex: 1,
+                      padding: '8px 4px',
+                      borderRadius: 'var(--radius-sm)',
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      textTransform: 'uppercase',
+                      border: '1px solid var(--border-glass)',
+                      background: bench.status === st 
+                        ? (st === 'active' ? 'var(--green-glow)' : st === 'maintenance' ? 'rgba(234, 179, 8, 0.15)' : 'rgba(239, 68, 68, 0.15)')
+                        : 'var(--bg-secondary)',
+                      color: bench.status === st
+                        ? (st === 'active' ? 'var(--green-400)' : st === 'maintenance' ? 'var(--yellow-400)' : 'var(--red-400)')
+                        : 'var(--text-muted)',
+                      borderColor: bench.status === st
+                        ? (st === 'active' ? 'var(--green-500)' : st === 'maintenance' ? 'var(--yellow-400)' : 'var(--red-400)')
+                        : 'transparent',
+                      transition: 'all var(--transition-fast)'
+                    }}
+                  >
+                    {st === 'active' ? 'Aktif' : st === 'maintenance' ? 'Bakımda' : 'Arızalı'}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

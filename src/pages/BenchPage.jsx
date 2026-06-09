@@ -53,25 +53,7 @@ const BenchPage = ({ onRefresh }) => {
     }
   }, [bench]);
 
-  const handleUpdateTelemetry = async (batteryLevel, status) => {
-    try {
-      const res = await fetch('/api/telemetry/report', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'X-API-KEY': 'sundock-secret-key'
-        },
-        body: JSON.stringify({ id: parseInt(id), batteryLevel, status })
-      });
-      if (res.ok) {
-        const updated = await res.json();
-        setBench(updated);
-        if (onRefresh) onRefresh();
-      }
-    } catch (err) {
-      console.error('Telemetri güncelleme hatası:', err);
-    }
-  };
+
 
   if (loading) {
     return (
@@ -176,68 +158,6 @@ const BenchPage = ({ onRefresh }) => {
           </div>
         </div>
 
-        {/* Telemetry Simulator Quick Control */}
-        <div className="detail-card">
-          <div className="detail-card-title">
-            <Zap size={16} style={{ color: 'var(--blue-400)' }} />
-            Simülatör Kontrolleri
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '8px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
-                <span style={{ color: 'var(--text-secondary)' }}>Şarj Seviyesi</span>
-                <strong style={{ color: batteryColor }}>%{bench.batteryLevel}</strong>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={bench.batteryLevel}
-                onChange={(e) => handleUpdateTelemetry(parseInt(e.target.value), bench.status)}
-                style={{
-                  width: '100%',
-                  height: '6px',
-                  borderRadius: 'var(--radius-full)',
-                  cursor: 'pointer',
-                  accentColor: batteryColor
-                }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>Durum Değiştir</span>
-              <div style={{ display: 'flex', gap: '6px' }}>
-                {['active', 'maintenance', 'offline'].map((st) => (
-                  <button
-                    key={st}
-                    onClick={() => handleUpdateTelemetry(bench.batteryLevel, st)}
-                    style={{
-                      flex: 1,
-                      padding: '8px 4px',
-                      borderRadius: 'var(--radius-sm)',
-                      fontSize: '11px',
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      border: '1px solid var(--border-glass)',
-                      background: bench.status === st 
-                        ? (st === 'active' ? 'var(--green-glow)' : st === 'maintenance' ? 'rgba(234, 179, 8, 0.15)' : 'rgba(239, 68, 68, 0.15)')
-                        : 'var(--bg-secondary)',
-                      color: bench.status === st
-                        ? (st === 'active' ? 'var(--green-400)' : st === 'maintenance' ? 'var(--yellow-400)' : 'var(--red-400)')
-                        : 'var(--text-muted)',
-                      borderColor: bench.status === st
-                        ? (st === 'active' ? 'var(--green-500)' : st === 'maintenance' ? 'var(--yellow-400)' : 'var(--red-400)')
-                        : 'transparent',
-                      transition: 'all var(--transition-fast)'
-                    }}
-                  >
-                    {st === 'active' ? 'Aktif' : st === 'maintenance' ? 'Bakımda' : 'Arızalı'}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Mini Map */}
